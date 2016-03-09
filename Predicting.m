@@ -19,7 +19,7 @@ num_labels = 10;          % 10 labels, from 1 to 10
 
 % Load Training Data
 fprintf('Loading and Visualizing Data ...\n')
-
+load(Load_Theta);
 load(Training_Data);
 m = size(X, 1);
 
