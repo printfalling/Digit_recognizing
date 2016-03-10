@@ -34,7 +34,7 @@ pause;
 
 
 
-%% ================= Part 4: Visualize Weights =================
+%% ================= Part 2: Visualize Weights =================
 %  You can now "visualize" what the neural network is learning by 
 %  displaying the hidden units to see what features they are capturing in 
 %  the data.
@@ -46,6 +46,7 @@ displayData(Theta1(:, 2:end));
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
+
 %% ================= Part 3: Implement Predict =================
 %  After training the neural network, we would like to use it to predict
 %  the labels. You will now implement the "predict" function to use the
@@ -56,4 +57,24 @@ pred = predict(Theta1, Theta2, X);
 
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
 
+fprintf('Program paused. Press enter to continue.\n');
+pause;
 
+%  To give you an idea of the network's output, you can also run
+%  through the examples one at the a time to see what it is predicting.
+
+%  Randomly permute examples
+rp = randperm(m);
+
+for i = 1:m
+    % Display 
+    fprintf('\nDisplaying Example Image\n');
+    displayData(X(rp(i), :));
+
+    pred = predict(Theta1, Theta2, X(rp(i),:));
+    fprintf('\nNeural Network Prediction: %d (digit %d) \n', pred, mod(pred, 10), y(i));
+    
+    % Pause
+    fprintf('Program paused. Press enter to continue.\n');
+    pause;
+end
