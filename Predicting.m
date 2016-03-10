@@ -1,13 +1,12 @@
 
 %% Initialization
 clear ; close all; clc
-Load_Theta = '.\datas\Theta.mat';
-Training_Data = '.\datas\ex4data1.mat';
-Times_of_tianing = 50;
+Load_Theta = '.\datas\Theta_784.mat';
+Training_Data = '.\datas\datas.mat';
 lambda = 1;
 %% Setup the parameters you will use for this exercise
 
-input_layer_size  = 400;  % 20x20 Input Images of Digits
+input_layer_size  = 784;  % 20x20 Input Images of Digits
 hidden_layer_size = 10;   % 25 hidden units
 num_labels = 10;          % 10 labels, from 1 to 10   
                           % (note that we have mapped "0" to label 10)
@@ -21,13 +20,13 @@ num_labels = 10;          % 10 labels, from 1 to 10
 fprintf('Loading and Visualizing Data ...\n')
 load(Load_Theta);
 load(Training_Data);
-m = size(X, 1);
+m = size(X_cv, 1);
 
 % Randomly select 100 data points to display
-sel = randperm(size(X, 1));
+sel = randperm(size(X_cv, 1));
 sel = sel(1:100);
 
-displayData(X(sel, :));
+displayData(X_cv(sel, :));
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
@@ -53,9 +52,9 @@ pause;
 %  neural network to predict the labels of the training set. This lets
 %  you compute the training set accuracy.
 
-pred = predict(Theta1, Theta2, X);
+pred = predict(Theta1, Theta2, X_cv);
 
-fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
+fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == Y_cv)) * 100);
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
@@ -69,10 +68,10 @@ rp = randperm(m);
 for i = 1:m
     % Display 
     fprintf('\nDisplaying Example Image\n');
-    displayData(X(rp(i), :));
+    displayData(X_cv(rp(i), :));
 
-    pred = predict(Theta1, Theta2, X(rp(i),:));
-    fprintf('\nNeural Network Prediction: %d (digit %d) \n', pred, mod(pred, 10), y(i));
+    pred = predict(Theta1, Theta2, X_cv(rp(i),:));
+    fprintf('\nNeural Network Prediction: %d (digit %d) \n', pred, mod(pred, 10));
     
     % Pause
     fprintf('Program paused. Press enter to continue.\n');

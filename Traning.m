@@ -1,13 +1,13 @@
 
 %% Initialization
 clear ; close all; clc
-Training_Data = '.\datas\ex4data1.mat';
-Save_Theta = '.\datas\Theta.txt'
+Training_Data = '.\datas\datas.mat';
+Save_Theta = '.\datas\Theta_784.mat';
 Times_of_tianing = 50;
 lambda = 1;
 
 %%All the parametrers can all be adjust.
-input_layer_size  = 400;  % 20x20 Input Images of Digits  
+input_layer_size  = 784;  % 20x20 Input Images of Digits  
 hidden_layer_size = 25;   % 25 hidden units
 num_labels = 10;          % 10 labels, from 1 to 10   
                           % (note that we have mapped "0" to label 10)
@@ -81,7 +81,7 @@ options = optimset('MaxIter', Times_of_tianing);
 costFunction = @(p) nnCostFunction(p, ...
                                    input_layer_size, ...
                                    hidden_layer_size, ...
-                                   num_labels, X, y, lambda);
+                                   num_labels, X, Y, lambda);
 
 % Now, costFunction is a function that takes in only one argument (the
 % neural network parameters)
