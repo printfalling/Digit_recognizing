@@ -2,7 +2,7 @@
 %% Initialization
 clear ; close all; clc
 Training_Data = '.\datas\ex4data1.mat';
-Save_Theta = '.\datas\Theta.mat'
+Save_Theta = '.\datas\Theta.txt'
 Times_of_tianing = 50;
 lambda = 1;
 
