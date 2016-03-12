@@ -1,7 +1,7 @@
 
 %% Initialization
 clear ; close all; clc
-Load_Theta = '.\datas\Theta_784.mat';
+Load_Theta = '.\datas\Theta_784_3.mat';
 Training_Data = '.\datas\datas.mat';
 lambda = 1;
 %% Setup the parameters you will use for this exercise
@@ -26,7 +26,7 @@ m = size(X_cv, 1);
 sel = randperm(size(X_cv, 1));
 sel = sel(1:100);
 
-displayData(X_cv(sel, :));
+displayData(X_cv(sel, :))
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
@@ -71,8 +71,10 @@ for i = 1:m
     displayData(X_cv(rp(i), :));
 
     pred = predict(Theta1, Theta2, X_cv(rp(i),:));
-    fprintf('\nNeural Network Prediction: %d (digit %d) \n', pred, mod(pred, 10));
     
+    fprintf('\nNeural Network Prediction: %d (digit %d) \n', pred, mod(pred, 10));
+     fprintf( 'Lable of the data %d\n', Y_cv(rp(i), :));
+
     % Pause
     fprintf('Program paused. Press enter to continue.\n');
     pause;

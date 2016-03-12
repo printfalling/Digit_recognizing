@@ -17,14 +17,19 @@ for i = 0:9999,
 		fi = fopen(file_name);
 	end;
 	j = mod(i, 1000)
+	A = fread(fi, 784, 'uchar');
+	B = reshape(A, 28, 28);
+	C = B';
+	D = C(:);
+	E = D';
 	if j < 600,
-		X(j + 600 * n + 1, :) = fread(fi, 784, 'uchar');
+		X(j + 600 * n + 1, :) = E;
 		Y(j + 600 * n + 1) = n;
 	elseif j < 800,
-		X_cv(j + 200 * n - 600 + 1, :) = fread(fi, 784, 'uchar');
+		X_cv(j + 200 * n - 600 + 1, :) = E;
 		Y_cv(j + 200 * n - 600 + 1) = n;
 	else
-		X_test(j + 200 * n - 800 + 1, :) = fread(fi, 784, 'uchar');
+		X_test(j + 200 * n - 800 + 1, :) = E;
 		Y_test(j + 200 * n - 800 + 1) = n;
 	end;
 end;
